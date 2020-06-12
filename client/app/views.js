@@ -7,20 +7,28 @@ const views = {
 
     const mainDiv = document.getElementById("root");
 
-    const ulEl = document.createElement("ul");
+    const olEl = document.createElement("ol");
 
     artists.forEach((artist) => {
+      const container = document.createElement("div");
+      container.setAttribute("id", `artist-${artist.Name}`);
+
+      const buttonEl = document.createElement("button");
+      buttonEl.setAttribute("class", "btn btn-info");
+      buttonEl.textContent = "Get Albums";
+
       const liEl = document.createElement("li");
-
-      const aEl = document.createElement("a");
-      aEl.href = artist.ArtistId;
-      aEl.innerHTML = artist.Name;
-
-      liEl.appendChild(aEl);
-      ulEl.appendChild(liEl);
+      liEl.innerHTML = `<details close>
+  <summary>${artist.Name}</summary>
+  <button id="button-getAlbums-${artist.artistId}" class="btn btn-info">Get Albums</button>
+  <button id="button-getSongs-${artist.artistId}" class="btn btn-info">Get Songs</button>
+</details>
+`;
+      container.appendChild(liEl);
+      olEl.appendChild(container);
     });
 
-    divEl.appendChild(ulEl);
+    divEl.appendChild(olEl);
     mainDiv.appendChild(divEl);
   },
 };
