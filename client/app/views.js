@@ -20,8 +20,8 @@ const views = {
       const liEl = document.createElement("li");
       liEl.innerHTML = `<details close>
   <summary>${artist.Name}</summary>
-  <button id="button-getAlbums-${artist.artistId}" class="btn btn-info">Get Albums</button>
-  <button id="button-getSongs-${artist.artistId}" class="btn btn-info">Get Songs</button>
+  <button id="getAlbums-${artist.ArtistId}" class="btn btn-info" onclick="handlers.getAlbums(event)">Get Albums</button>
+  <button id="getSongs-${artist.ArtistId}" class="btn btn-info">Get Songs</button>
 </details>
 `;
       container.appendChild(liEl);
@@ -30,5 +30,29 @@ const views = {
 
     divEl.appendChild(olEl);
     mainDiv.appendChild(divEl);
+  },
+
+  renderAlbums: (arrayData, e) => {
+    const Albums = arrayData;
+
+    const divEl = document.createElement("div");
+
+    const parentNode = e.target.parentNode;
+
+    const ulEl = document.createElement("ul");
+
+    Albums.forEach((album) => {
+      const container = document.createElement("div");
+
+      const liEl = document.createElement("li");
+      liEl.innerHTML = `<details close>
+  <summary>${album.Title}</summary>
+  
+</details>`;
+      container.appendChild(liEl);
+      ulEl.appendChild(container);
+    });
+    divEl.appendChild(ulEl);
+    parentNode.appendChild(divEl);
   },
 };
