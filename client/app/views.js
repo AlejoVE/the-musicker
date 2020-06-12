@@ -47,7 +47,7 @@ const views = {
       const liEl = document.createElement("li");
       liEl.innerHTML = `<details close>
   <summary>${album.Title}</summary>
-  
+  <button class="btn btn-secondary" onclick="handlers.getSongs(event)">Get Songs</button>
 </details>`;
       container.appendChild(liEl);
       ulEl.appendChild(container);

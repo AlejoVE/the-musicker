@@ -15,8 +15,12 @@ const handlers = {
       const res = await fetch(`/api/artists/albums/${ArtistId}`);
       const data = await res.json();
       views.renderAlbums(data, e);
+      handlers.getSongs();
     } catch (error) {
       console.log(error);
     }
+  },
+  getSongs: async () => {
+    console.log("funciono");
   },
 };
