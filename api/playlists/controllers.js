@@ -18,7 +18,7 @@ const controllers = {
   getPlaylistSongs: (req, res) => {
     try {
       const id = Number(req.params.id);
-      const sql = `SELECT  t.name as song
+      const sql = `SELECT  t.name as Name
                           FROM Playlist_Track pt
                           INNer join Playlists p on pt.PlaylistId = p.PlaylistId
                           INNER JOIN Tracks T ON t.trackId  = pt.trackId

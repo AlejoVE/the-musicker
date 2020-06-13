@@ -55,6 +55,6 @@ const handlers = {
     const playlistId = Number(playlistIdString[1]);
     const res = await fetch(`/api/playlists/${playlistId}/songs`);
     const data = await res.json();
-    console.log(data);
+    views.renderSongs(data, e);
   },
 };
