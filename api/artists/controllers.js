@@ -16,7 +16,7 @@ const controllers = {
   getAlbums: (req, res) => {
     try {
       const id = Number(req.params.id);
-      const sql = `SELECT al.title
+      const sql = `SELECT al.title, al.albumId
                   FROM Albums al
                   INNER JOIN Artists ar on ar.artistId = al.ArtistId
                   WHERE ar.ArtistId = ${id};`;
@@ -27,6 +27,24 @@ const controllers = {
           return;
         }
         res.json(rows);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  getSongs: async (req, res) => {
+    try {
+      const id = Number(req.params.id);
+      const sql = `SELECT t.name
+                  FROM Tracks t
+                  WHERE t.albumid = ${id};`;
+
+      db.all(sql, (err, rows) => {
+        if (err) {
+          res.status(400).json({ error: err.message });
+          return;
+        }
+        res.send(rows);
       });
     } catch (error) {
       console.log(error);
