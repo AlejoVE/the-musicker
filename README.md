@@ -6,7 +6,7 @@ This project consists of an app where the user can see a list of artists, the al
 
 ## Demo:
 
-![alt text](client/igm/2020-06-13_21h29_39.gif)
+![alt text](client/img/2020-06-13_21h29_39.gif)
 
 ## Objective:
 
