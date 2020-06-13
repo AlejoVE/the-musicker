@@ -121,7 +121,7 @@ const views = {
       liEl.innerHTML = `<details close>
   <summary>${playlist.Name}</summary>
   <button id="buttonPlaylist-${playlist.PlaylistId}" class="btn btn-info" onclick="handlers.getPlaylistSong(event)">Get Songs</button>
-  <button class="btn btn-danger">Delete Playlist</button>
+  <button class="btn btn-danger" id="delete-${playlist.PlaylistId}" onclick="handlers.deletePlaylist(event)">Delete Playlist</button>
 </details>
 `;
       container.appendChild(liEl);

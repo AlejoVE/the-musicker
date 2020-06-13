@@ -91,4 +91,21 @@ const handlers = {
       console.log(error);
     }
   },
+  deletePlaylist: async (e) => {
+    const playlistIdString = e.target.parentNode.parentNode.parentNode.id.split(
+      "-"
+    );
+    const playlistId = Number(playlistIdString[1]);
+    console.log(playlistId);
+
+    try {
+      await fetch(`/api/playlists/${playlistId}`, {
+        method: "DELETE",
+      });
+      alert("Playlist deleted");
+      location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };
