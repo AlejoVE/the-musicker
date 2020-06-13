@@ -43,6 +43,7 @@ const views = {
 
     Albums.forEach((album) => {
       const container = document.createElement("div");
+      container.setAttribute("id", `album-${album.AlbumId}`);
 
       const liEl = document.createElement("li");
       liEl.innerHTML = `<details close>
@@ -54,5 +55,18 @@ const views = {
     });
     divEl.appendChild(ulEl);
     parentNode.appendChild(divEl);
+  },
+  renderSongs: (data, e) => {
+    const songs = data;
+    const parent = e.target.parentNode;
+
+    const ulEl = document.createElement("ul");
+
+    songs.forEach((song) => {
+      const liEl = document.createElement("li");
+      liEl.innerHTML = song.Name;
+      ulEl.appendChild(liEl);
+    });
+    parent.appendChild(ulEl);
   },
 };
