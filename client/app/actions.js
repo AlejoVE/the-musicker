@@ -32,4 +32,11 @@ const handlers = {
       console.log(error);
     }
   },
+  getAllSongs: async (e) => {
+    const idString = e.target.parentNode.parentNode.parentNode.id.split("-");
+    const id = Number(idString[1]);
+    const res = await fetch(`/api/artists/${id}/songs`);
+    const data = await res.json();
+    views.renderSongs(data, e);
+  },
 };

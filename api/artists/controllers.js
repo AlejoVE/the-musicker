@@ -50,6 +50,25 @@ const controllers = {
       console.log(error);
     }
   },
+  getAllSongs: async (req, res) => {
+    try {
+      const id = Number(req.params.id);
+      const sql = `SELECT t.name 
+                  FROM Tracks t
+                  INNER JOIN  Artists ar  ON ar.Name = t.composer
+                  WHERE artistId = ${id};`;
+
+      db.all(sql, (err, rows) => {
+        if (err) {
+          res.status(400).json({ error: err.message });
+          return;
+        }
+        res.send(rows);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };
 
 module.exports = controllers;

@@ -11,7 +11,7 @@ const views = {
 
     artists.forEach((artist) => {
       const container = document.createElement("div");
-      container.setAttribute("id", `artist-${artist.Name}`);
+      container.setAttribute("id", `artist-${artist.ArtistId}`);
 
       const buttonEl = document.createElement("button");
       buttonEl.setAttribute("class", "btn btn-info");
@@ -21,7 +21,7 @@ const views = {
       liEl.innerHTML = `<details close>
   <summary>${artist.Name}</summary>
   <button id="getAlbums-${artist.ArtistId}" class="btn btn-info" onclick="handlers.getAlbums(event)">Get Albums</button>
-  <button id="getSongs-${artist.ArtistId}" class="btn btn-info">Get Songs</button>
+  <button id="getSongs-${artist.ArtistId}" class="btn btn-info" onclick="handlers.getAllSongs(event)">Get Songs</button>
 </details>
 `;
       container.appendChild(liEl);
@@ -40,7 +40,13 @@ const views = {
     const parentNode = e.target.parentNode;
 
     const ulEl = document.createElement("ul");
+    const hEl = document.createElement("h4");
+    hEl.innerHTML = ` Albums <svg class="bi bi-folder" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path d="M9.828 4a3 3 0 0 1-2.12-.879l-.83-.828A1 1 0 0 0 6.173 2H2.5a1 1 0 0 0-1 .981L1.546 4h-1L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3v1z"/>
+  <path fill-rule="evenodd" d="M13.81 4H2.19a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91h10.348a1 1 0 0 0 .995-.91l.637-7A1 1 0 0 0 13.81 4zM2.19 3A2 2 0 0 0 .198 5.181l.637 7A2 2 0 0 0 2.826 14h10.348a2 2 0 0 0 1.991-1.819l.637-7A2 2 0 0 0 13.81 3H2.19z"/>
+</svg> <hr>`;
 
+    ulEl.appendChild(hEl);
     Albums.forEach((album) => {
       const container = document.createElement("div");
       container.setAttribute("id", `album-${album.AlbumId}`);
@@ -59,8 +65,17 @@ const views = {
   renderSongs: (data, e) => {
     const songs = data;
     const parent = e.target.parentNode;
+    console.log(parent);
 
     const ulEl = document.createElement("ul");
+    const hEl = document.createElement("h4");
+    hEl.innerHTML = ` Songs <svg class="bi bi-music-note-beamed" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path d="M6 13c0 1.105-1.12 2-2.5 2S1 14.105 1 13c0-1.104 1.12-2 2.5-2s2.5.896 2.5 2zm9-2c0 1.105-1.12 2-2.5 2s-2.5-.895-2.5-2 1.12-2 2.5-2 2.5.895 2.5 2z"/>
+  <path fill-rule="evenodd" d="M14 11V2h1v9h-1zM6 3v10H5V3h1z"/>
+  <path d="M5 2.905a1 1 0 0 1 .9-.995l8-.8a1 1 0 0 1 1.1.995V3L5 4V2.905z"/>
+</svg> <hr>`;
+
+    ulEl.appendChild(hEl);
 
     songs.forEach((song) => {
       const liEl = document.createElement("li");
