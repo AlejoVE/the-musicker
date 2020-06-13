@@ -105,7 +105,7 @@ const views = {
       const liEl = document.createElement("li");
       liEl.innerHTML = `<details close>
   <summary>${playlist.Name}</summary>
-  <button id="getSongs-${playlist.PlaylistId}" class="btn btn-info" onclick="handlers.getAllSongs(event)">Get Songs</button>
+  <button id="buttonPlaylist-${playlist.PlaylistId}" class="btn btn-info" onclick="handlers.getPlaylistSong(event)">Get Songs</button>
 </details>
 `;
       container.appendChild(liEl);

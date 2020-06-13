@@ -39,7 +39,7 @@ const handlers = {
     const data = await res.json();
     views.renderSongs(data, e);
   },
-  getPlaylists: async (e) => {
+  getPlaylists: async () => {
     try {
       const res = await fetch("/api/playlists/");
       const data = await res.json();
@@ -47,5 +47,14 @@ const handlers = {
     } catch (error) {
       console.log(error);
     }
+  },
+  getPlaylistSong: async (e) => {
+    const playlistIdString = e.target.parentNode.parentNode.parentNode.id.split(
+      "-"
+    );
+    const playlistId = Number(playlistIdString[1]);
+    const res = await fetch(`/api/playlists/${playlistId}/songs`);
+    const data = await res.json();
+    console.log(data);
   },
 };

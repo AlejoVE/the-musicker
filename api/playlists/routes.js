@@ -3,8 +3,8 @@ const express = require("express");
 
 const router = express.Router();
 
-router.get("/", controllers.getAll);
-// router.get("/albums/:id", controllers.getAlbums);
+router.get("/", controllers.getAllPlaylists);
+router.get("/:id/songs", controllers.getPlaylistSongs);
 // router.get("/albums/:id/songs", controllers.getSongs);
 // router.get("/:id/songs", controllers.getAllSongs);
 
