@@ -84,4 +84,35 @@ const views = {
     });
     parent.appendChild(ulEl);
   },
+  renderPlaylist: (data) => {
+    const playlists = data;
+
+    const divEl = document.createElement("div");
+    divEl.setAttribute("id", "playlist-container");
+
+    const mainDiv = document.getElementById("root");
+
+    const olEl = document.createElement("ol");
+
+    playlists.forEach((playlist) => {
+      const container = document.createElement("div");
+      container.setAttribute("id", `playlist-${playlist.PlaylistId}`);
+
+      const buttonEl = document.createElement("button");
+      buttonEl.setAttribute("class", "btn btn-info");
+      buttonEl.textContent = "Get Albums";
+
+      const liEl = document.createElement("li");
+      liEl.innerHTML = `<details close>
+  <summary>${playlist.Name}</summary>
+  <button id="getSongs-${playlist.PlaylistId}" class="btn btn-info" onclick="handlers.getAllSongs(event)">Get Songs</button>
+</details>
+`;
+      container.appendChild(liEl);
+      olEl.appendChild(container);
+    });
+
+    divEl.appendChild(olEl);
+    mainDiv.appendChild(divEl);
+  },
 };

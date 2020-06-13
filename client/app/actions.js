@@ -39,4 +39,13 @@ const handlers = {
     const data = await res.json();
     views.renderSongs(data, e);
   },
+  getPlaylists: async (e) => {
+    try {
+      const res = await fetch("/api/playlists/");
+      const data = await res.json();
+      views.renderPlaylist(data);
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };
