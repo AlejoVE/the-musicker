@@ -57,4 +57,38 @@ const handlers = {
     const data = await res.json();
     views.renderSongs(data, e);
   },
+  addPlaylist: async (e) => {
+    e.preventDefault();
+    const input = document.getElementById("input-box").value.trim();
+    if (input === "" || input.length < 3) {
+      alert(
+        "The text field cannot be empty and the name must contain at least 3 characters."
+      );
+      return;
+    }
+
+    if (input.includes("%") || input.includes("´")) {
+      alert(
+        `For security reasons, the name cannot contain the symbols "%" or "\`"`
+      );
+      return;
+    }
+
+    try {
+      await fetch("/api/playlists/", {
+        method: "POST",
+        body: JSON.stringify({
+          name: input,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      });
+
+      alert("Playlist added!");
+      handlers.getPlaylists();
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };

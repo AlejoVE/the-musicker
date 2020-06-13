@@ -34,6 +34,24 @@ const controllers = {
       console.log(error);
     }
   },
+  addPlaylist: (req, res) => {
+    const data = {
+      name: req.body.name,
+    };
+
+    const sql = `INSERT INTO playlists (name) VALUES ("${data.name}")`;
+
+    db.run(sql, (err, rows) => {
+      if (err) {
+        res.status(400).json({ error: err.message });
+        return;
+      }
+      res.json({
+        message: "success",
+        data: data,
+      });
+    });
+  },
 };
 
 module.exports = controllers;
