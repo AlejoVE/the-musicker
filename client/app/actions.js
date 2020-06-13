@@ -86,7 +86,7 @@ const handlers = {
       });
 
       alert("Playlist added!");
-      handlers.getPlaylists();
+      location.reload();
     } catch (error) {
       console.log(error);
     }
