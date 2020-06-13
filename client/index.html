@@ -21,10 +21,25 @@
 
   <body>
     <div id="root">
+      <div>
+        <form>
+          <input type="text" id="input-box" placeholder="Playlist Name" />
+          <input
+            type="submit"
+            value="Add playlist"
+            class="btn btn-success"
+            onclick="handlers.addPlaylist(event)"
+          />
+        </form>
+      </div>
       <button class="btn btn-primary" onclick="handlers.getArtists()">
         Get All artists
       </button>
+      <button class="btn btn-info" onclick="handlers.getPlaylists()">
+        Get Playlists
+      </button>
     </div>
+
     <script src="./app/init.js"></script>
     <script src="./app/actions.js"></script>
   </body>

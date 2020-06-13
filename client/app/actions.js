@@ -39,4 +39,73 @@ const handlers = {
     const data = await res.json();
     views.renderSongs(data, e);
   },
+  getPlaylists: async () => {
+    try {
+      const res = await fetch("/api/playlists/");
+      const data = await res.json();
+      views.renderPlaylist(data);
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  getPlaylistSong: async (e) => {
+    const playlistIdString = e.target.parentNode.parentNode.parentNode.id.split(
+      "-"
+    );
+    const playlistId = Number(playlistIdString[1]);
+    const res = await fetch(`/api/playlists/${playlistId}/songs`);
+    const data = await res.json();
+    views.renderSongs(data, e);
+  },
+  addPlaylist: async (e) => {
+    e.preventDefault();
+    const input = document.getElementById("input-box").value.trim();
+    if (input === "" || input.length < 3) {
+      alert(
+        "The text field cannot be empty and the name must contain at least 3 characters."
+      );
+      return;
+    }
+
+    if (input.includes("%") || input.includes("´")) {
+      alert(
+        `For security reasons, the name cannot contain the symbols "%" or "\`"`
+      );
+      return;
+    }
+
+    try {
+      await fetch("/api/playlists/", {
+        method: "POST",
+        body: JSON.stringify({
+          name: input,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      });
+
+      alert("Playlist added!");
+      handlers.getPlaylists();
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  deletePlaylist: async (e) => {
+    const playlistIdString = e.target.parentNode.parentNode.parentNode.id.split(
+      "-"
+    );
+    const playlistId = Number(playlistIdString[1]);
+    console.log(playlistId);
+
+    try {
+      await fetch(`/api/playlists/${playlistId}`, {
+        method: "DELETE",
+      });
+      alert("Playlist deleted");
+      location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };

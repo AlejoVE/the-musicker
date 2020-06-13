@@ -7,5 +7,6 @@ router.get("/", (req, res) => {
 });
 
 router.use("/artists", require("./artists"));
+router.use("/playlists", require("./playlists"));
 
 module.exports = router;

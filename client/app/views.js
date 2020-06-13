@@ -8,6 +8,12 @@ const views = {
     const mainDiv = document.getElementById("root");
 
     const olEl = document.createElement("ol");
+    const hEl = document.createElement("h4");
+    hEl.innerHTML = ` Artists <svg class="bi bi-star-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+</svg> <hr>`;
+
+    olEl.appendChild(hEl);
 
     artists.forEach((artist) => {
       const container = document.createElement("div");
@@ -83,5 +89,46 @@ const views = {
       ulEl.appendChild(liEl);
     });
     parent.appendChild(ulEl);
+  },
+  renderPlaylist: (data) => {
+    const playlists = data;
+
+    const divEl = document.createElement("div");
+    divEl.setAttribute("id", "playlist-container");
+
+    const mainDiv = document.getElementById("root");
+
+    const olEl = document.createElement("ol");
+
+    const hEl = document.createElement("h4");
+    hEl.innerHTML = `Playlists <svg class="bi bi-music-note-list" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path d="M12 13c0 1.105-1.12 2-2.5 2S7 14.105 7 13s1.12-2 2.5-2 2.5.895 2.5 2z"/>
+  <path fill-rule="evenodd" d="M12 3v10h-1V3h1z"/>
+  <path d="M11 2.82a1 1 0 0 1 .804-.98l3-.6A1 1 0 0 1 16 2.22V4l-5 1V2.82z"/>
+  <path fill-rule="evenodd" d="M0 11.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 .5 7H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 .5 3H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5z"/>
+</svg> <hr>`;
+
+    olEl.appendChild(hEl);
+    playlists.forEach((playlist) => {
+      const container = document.createElement("div");
+      container.setAttribute("id", `playlist-${playlist.PlaylistId}`);
+
+      const buttonEl = document.createElement("button");
+      buttonEl.setAttribute("class", "btn btn-info");
+      buttonEl.textContent = "Get Albums";
+
+      const liEl = document.createElement("li");
+      liEl.innerHTML = `<details close>
+  <summary>${playlist.Name}</summary>
+  <button id="buttonPlaylist-${playlist.PlaylistId}" class="btn btn-info" onclick="handlers.getPlaylistSong(event)">Get Songs</button>
+  <button class="btn btn-danger" id="delete-${playlist.PlaylistId}" onclick="handlers.deletePlaylist(event)">Delete Playlist</button>
+</details>
+`;
+      container.appendChild(liEl);
+      olEl.appendChild(container);
+    });
+
+    divEl.appendChild(olEl);
+    mainDiv.appendChild(divEl);
   },
 };
