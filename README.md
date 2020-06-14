@@ -26,7 +26,6 @@ Practice with databases and SQL queries.
 ## Technologies:
 
 - HTML5
-- CSS
 - Javascript
 - Node
 - Express
