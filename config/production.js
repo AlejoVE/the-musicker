@@ -1,4 +1,4 @@
 module.exports = {
-  MODE: 'production',
-  DB_PATH: process.env.DB_PATH
+  MODE: "production",
+  PORT: process.env.PORT,
 };
