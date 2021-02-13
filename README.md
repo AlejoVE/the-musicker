@@ -35,7 +35,7 @@ Practice with databases and SQL queries.
 
 ## Status:
 
-- In progress.
+- Completed.
 
 ## Credits:
 
